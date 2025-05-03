@@ -8,6 +8,7 @@ import LanguageToggle from './components/LanguageToggle';
 // Components
 import LoadingScreen from './components/LoadingScreen';
 import Layout from './components/Layout';
+import setTrainingContext from './components/DocumentProcessor';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -42,6 +43,22 @@ function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const loadDoc = async () => {
+        try {
+          const response = await fetch('/telecommunication -1.txt'); // adjust filename as needed
+          const text = await response.text();
+          setTrainingContext(text); // This trains the model in memory
+          console.log('Training context set with document.');
+        } catch (error) {
+          console.error('Failed to load training document:', error);
+        }
+      };
+      loadDoc();
+    }
+  }, [loading]);
 
   if (loading) {
     return <LoadingScreen  />;

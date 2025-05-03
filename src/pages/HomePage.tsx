@@ -8,7 +8,6 @@ import LevelCard from '../components/LevelCard';
 import { useGameStore, type Avatar } from '../store/gameStore';
 import ToolsSection from '../components/ToolsSection';
 import LinkFinder from '../components/LinkFinder';
-import '../style.css';
 import Email from '../components/Email';
 
 const HomePage: React.FC = () => {
